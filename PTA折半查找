@@ -1,0 +1,57 @@
+/*
+折半查找
+题目描述
+在一个有序的一维数组中，输入一个数，利用折半查找法找到该数是这个数组中的第几个数；如果该数不在数组中，则输出“No data!”
+输入格式:
+第一行输入一个整数n(1<=n<=15)，表示该数组有几个数；第二行输入n个整型一维数组；第三行输入要查找的数。
+输出格式:
+如果找到该数，输出“It's position is 4!”；如果没有找到，输出“No data!”。
+输入样例1:
+在这里给出一组输入。例如：
+5
+-3 2 7 15 40
+15
+输出样例1:
+在这里给出相应的输出。例如：
+It's position is 4!
+输入样例2:
+在这里给出一组输入。例如：
+4
+0 3 6 9
+5
+输出样例2:
+在这里给出相应的输出。例如：
+No data!
+*/
+#include<iostream>
+using namespace std;
+int main()
+{
+	int i,n;
+	int Arr[20];
+	cin >> n;
+	for (i = 0; i < n; i++)
+		cin >> Arr[i];
+	int num;
+	int flag = 0;
+	cin >> num;
+	int low = 1, high = n, mid = (low+high)/2;
+	while (low <= high)
+	{
+		if (Arr[mid-1] < num)
+			low = mid + 1;
+		if (Arr[mid-1] > num)
+			high = mid - 1;
+		if (Arr[mid - 1] == num)
+		{
+			flag = 1;
+			break;
+		}
+		mid = (low + high) / 2;
+	}
+	if (flag == 1)
+		cout << "It's position is " << mid << "!" << endl;
+	else
+		cout << "No data!" << endl;
+	return 0;
+}
