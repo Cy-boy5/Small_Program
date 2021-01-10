@@ -1,0 +1,35 @@
+/*
+* 乘法口诀表
+请编写程序，输出 n×n 的乘法口诀表。
+输入格式
+n
+输出格式
+n×n 的乘法口诀表。
+样例输入
+5
+样例输出
+1x1= 1
+1x2= 2 2x2= 4
+1x3= 3 2x3= 6 3x3= 9
+1x4= 4 2x4= 8 3x4=12 4x4=16
+1x5= 5 2x5=10 3x5=15 4x5=20 5x5=25
+注：乘号为小写字母x；乘积域宽2格(右对齐)；两列之间空1格；行末没有空格。
+*/
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	int i, j, n;
+	cin >> n;
+	for (i = 1; i <= n; i++)
+	{
+		for (j = 1; j < i; j++)
+		{
+			cout << j << "x" << i << "=" << std::right << setw(2) << i * j << " ";
+		}
+		cout << j << "x" << i << "=" << std::right << setw(2) << i * j;
+		if (i < n)
+			cout << endl;
+	}
+}
