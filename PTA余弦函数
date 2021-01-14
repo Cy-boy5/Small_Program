@@ -1,0 +1,57 @@
+/*
+7-5 余弦函数
+根据麦克劳林公式计算任意角的余弦。
+输入格式
+x ϵ
+注：x 为角（单位：弧度），ϵ 为计算精度。
+输出格式
+y
+注：y 为 x 的余弦值。用 %f 格式限定符输出 6 位小数。
+要求：所计算的最后一项的绝对值小于 ϵ。
+输入样例1
+1.047197551196598 0.00000001
+输出样例1
+0.500000
+输入样例2
+315.2064629101759 0.000001
+输出样例2
+0.500000
+提示：将 x 转换为区间 (−2π,2π) 内的角，以提升计算的精度，加快计算速度。
+*/
+#include<iostream>
+#include<cmath>
+#include<iomanip>
+using namespace std;
+#define PI 3.141592653589793
+int main()
+{
+	double x, y;
+	cin >> x;
+	cin >> y;
+	int i;
+	double temp = 1, sum = 0, w;
+	double t = x;
+	double n = 1;
+	if (x >= 2 * PI)
+		t = ((x / PI) - 2 * ((int)((x / PI) / 2))) * PI;
+	if (x <= -2 * PI)
+		t = -((((-x) / PI) - 2 * ((int)(((-x) / PI) / 2))) * PI);
+	for (i = 0;; i++)
+	{
+		if (i == 0)
+		{
+			w = 1;
+		}
+		else
+		{
+			n = n * (2 * i) * (2 * i - 1);
+			w = temp * (pow(t, 2 * i) / n);
+		}
+		sum += w;
+		if (abs(w) < y)
+			break;
+		temp *= -1;
+	}
+	cout << setiosflags(ios::fixed | ios::showpoint) << setprecision(6) << sum;
+}
+
