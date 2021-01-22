@@ -1,0 +1,26 @@
+#include<iostream>
+#include<cstdio>
+#include<stack>
+
+using namespace std;
+
+stack<int> s;
+
+int main()
+{
+	int n;
+	while(1)
+	{
+		cin >> n;
+		if (n != 0)
+			s.push(n);
+		else 
+			break;
+	}
+	while(!s.empty())
+	{
+		cout << s.top() << " ";
+		s.pop();
+	}
+	return 0;
+}
