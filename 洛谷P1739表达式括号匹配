@@ -1,0 +1,31 @@
+#include<iostream>
+#include<cstdio>
+#include<stack>
+
+using namespace std;
+
+stack<char> s;
+bool p = true;
+
+int main()
+{
+	char ch;
+	while(1)
+	{
+		cin >> ch;
+		if (ch == '(')
+			s.push(ch);
+		if (ch == ')')
+			if (s.size() > 0 && s.top() == '(')
+				s.pop();
+			else
+				p = false;
+		if (ch == '@')
+			break;
+	}
+	if (p == false || s.empty() == false)
+		cout << "NO";
+	else 
+		cout << "YES";
+	return 0;
+}
