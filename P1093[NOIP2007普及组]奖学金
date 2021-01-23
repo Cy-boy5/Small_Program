@@ -1,0 +1,62 @@
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+
+using namespace std;
+
+struct node{
+	int Chinese;
+	int Math;
+	int English;
+	int result;
+	int number;
+};
+
+node Persons[305];
+
+bool cmp(node a, node b)
+{
+	if (a.result > b.result) 
+		return true;
+	else
+	{
+		if(a.result < b.result) 
+			return false;
+		else
+		{
+			if (a.Chinese > b.Chinese)
+				return true;
+			else
+			{
+				if (a.Chinese < b.Chinese)
+					return false;
+				else
+				{
+					if(a.number < b.number)
+						return true;
+					else
+						return false;
+				}
+			}
+		}
+	}		
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+	Persons[n+1];
+	for (int i = 1; i <= n; i++)
+	{
+		cin >> Persons[i].Chinese >> Persons[i].Math >> Persons[i].English;
+		Persons[i].result = Persons[i].Chinese + Persons[i].Math + Persons[i].English;
+		Persons[i].number = i;
+	}
+	sort(Persons+1,Persons + n + 1,cmp);
+	for (int i = 1; i <= 5; i++)
+	{
+		cout << Persons[i].number << " " << Persons[i].result << endl;
+	}
+	return 0;
+}
