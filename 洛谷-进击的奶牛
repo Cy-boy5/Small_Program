@@ -1,0 +1,41 @@
+#include<iostream>
+#include<algorithm>
+#define MAX_ROOM 100001
+
+using namespace std;
+
+int N,C;
+int Arr[MAX_ROOM];
+int low,high,mid;
+
+bool D_TF(int d)
+{
+	int Cow_num = 1,Last_cow = 1;
+	for (int i = 2; i <= N; i++)
+	{
+		if(Arr[i] - Arr[Last_cow] >= d)
+		{
+			Cow_num++;
+			Last_cow = i;
+		}
+	}
+	if (Cow_num >= C) return true;
+	return false;
+}
+
+int main()
+{
+	cin >> N >> C;
+	for (int i = 1; i <= N; i++)
+		cin >> Arr[i];
+	sort(Arr+1,Arr+1+N);
+	low = 1,high = Arr[N]-Arr[1];
+	while (low<=high)
+	{
+		mid = (low+high)/2;
+		if (D_TF(mid)) low = mid+1;
+		else high = mid-1;
+	}
+	cout << high << endl;
+	return 0;
+}
